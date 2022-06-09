@@ -1,0 +1,41 @@
+<x-guest-layout>
+    <x-jet-authentication-card>
+        <x-slot name="logo">
+        <img src="{{asset('public/web_assist/images/sarmayah_logo.png')}}" style="height:40px;width:180px">
+        </x-slot>
+
+        <x-jet-validation-errors class="mb-4" />
+
+        <form method="POST" action="{{ route('password.update') }}">
+            @csrf
+
+            <input type="hidden" name="token" value="{{ $request->route('token') }}">
+
+
+            <div class="block">
+                <x-jet-label value="{{ __('Email') }}" />
+                <x-jet-input class="block mt-1 w-full" type="email" name="email" :value="old('email', $request->email)" required autofocus />
+            </div>
+
+            <div class="mt-4">
+                <x-jet-label value="{{ __('Password') }}" />
+                <x-jet-input class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
+            </div>
+
+            <div class="mt-4">
+                <x-jet-label value="{{ __('Confirm Password') }}" />
+                <x-jet-input class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
+            </div>
+
+            <div class="flex items-center justify-end mt-4">
+           
+                <div class="form-group text-center m-t-20">
+                    <div class="col-xs-12">
+                        <button class="btn btn btn-success btn-lg btn-block text-uppercase waves-effect waves-light" type="submit">  {{ __('Reset Password') }}</button>
+                    </div>
+                </div>
+                
+            </div>
+        </form>
+    </x-jet-authentication-card>
+</x-guest-layout>
